@@ -21,7 +21,6 @@ def test_empty_authors_scores():
     assert res[26]['points'] =='empty'
 
 def test_greater_than_zero_values():
-    print(res)
     assert int(res[0]['points']) >= 0
     assert int(res[0]['comments']) >= 0
     assert int(res[0]['rank']) > 0
@@ -34,4 +33,9 @@ def test_integer():
         assert True
     except ValueError:
         assert False
+
+def test_greaterthan256():
+    assert len(res[0]['title']) <= 256
+    assert len(res[0]['author']) <= 256
+
 
