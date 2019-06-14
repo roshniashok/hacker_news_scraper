@@ -17,8 +17,8 @@ def test_empty_strings():
     assert res[1]['author'] != ''
 
 def test_empty_authors_scores():
-    assert res[26]['author'] =='empty'
-    assert res[26]['points'] =='empty'
+    assert res[1]['author'] =='empty'
+    assert res[1]['points'] =='empty'
 
 def test_greater_than_zero_values():
     assert int(res[0]['points']) >= 0
