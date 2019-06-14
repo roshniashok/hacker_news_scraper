@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from hackerNews import scraper,soup
+from scraper_code.hackerNewsScraper import scraper,soup
 
 with open("sampleHN.html", encoding="utf-8") as f:
     html = f.read()
