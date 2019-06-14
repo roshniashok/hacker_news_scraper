@@ -1,4 +1,4 @@
-import urllib.request
+import urllib.request 
 from bs4 import BeautifulSoup
 import json
 import click
@@ -27,8 +27,10 @@ def soup(posts):
         print(len(total))
         final_json=json.dumps(total,indent=4)
         print(final_json)
-                
+        return total
         
+        
+                
 
 def countURL(pageInit,posts):
         if(posts%30!=0):
@@ -50,19 +52,21 @@ def scraper(soup):
                 title_url=titleURL['href']
                 article_title=titleURL.string.strip()
                 rank=result2.td.span.string.strip()
-                #comment=result.select('a')[3].get_text()
-                #if (comment==None): comment='empty'
-                #else : comment=result.select('a')[3].get_text(strip=True)
+                children = result.findChildren()
+                for i, child in enumerate(children):
+                        if i == 6:
+                                comment=child.text
                 if (author==None) : author_name='empty'
                 else: author_name=result.a['href']
                 if(score==None) : article_score ='empty'
                 else: article_score=result.span.string.strip()
                 rec = {
-                                'title':article_title,
+                                'title':article_title.replace("\u2019",""),
                                 'uri':title_url,
-                                'author': author_name,
-                                'points': article_score,
-                                'rank': rank,
+                                'author': author_name.replace("user?id=",""),
+                                'points': article_score.replace("points",""),
+                                'comments' : comment.replace("\u00a0comments",""),
+                                'rank': rank.strip('.')      
                         }
                 items.append(rec)
         return items
