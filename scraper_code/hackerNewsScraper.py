@@ -4,7 +4,6 @@ import json
 import click
 import urllib3
 import re
-import unicodedata
 import requests
 from validator_collection import validators, checkers
 
